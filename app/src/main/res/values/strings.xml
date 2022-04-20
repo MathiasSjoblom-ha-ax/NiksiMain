@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Niksi-Pirkka</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_top_text">Please enter the information about the content</string>
+    <string name="content_text">Content</string>
+    <string name="enter_content_button">ENTER</string>
+    <string name="add_button">ADD</string>
+    <string-array name="spinnerItems">
+        <item>Lifestyle</item>
+        <item>Technology</item>
+        <item>Miscellaneous</item>
+    </string-array>
+</resources>
