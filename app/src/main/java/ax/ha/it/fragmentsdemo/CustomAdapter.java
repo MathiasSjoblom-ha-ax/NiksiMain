@@ -4,15 +4,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import ax.ha.it.fragmentsdemo.Advice;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+import java.util.List;
 
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+    /*
     private final String[] contentItems;
     private final String[] authorItems;
     private final String[] categoryItems;
+
+     */
+    private final Advice[] advice;
 
 
     public static class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -28,22 +35,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             author = (TextView) view.findViewById(R.id.authorItem);
             category = (TextView) view.findViewById(R.id.categoryItem);
         }
-
-        public TextView getContent() {
-            return content;
-        }
-        public TextView getAuthor() {
-            return author;
-        }
-        public TextView getCategory() {
-            return category;
-        }
     }
 
-    public CustomAdapter(String[] contentItems, String[] authorItems, String[] categoryItems) {
-        this.contentItems = contentItems;
-        this.authorItems = authorItems;
-        this.categoryItems = categoryItems;
+    public CustomAdapter(Advice[] advice) {
+        this.advice = advice;
     }
 
     @NonNull
@@ -56,13 +51,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.content.setText(contentItems[position]);
-        holder.author.setText(authorItems[position]);
-        holder.category.setText(categoryItems[position]);
+        holder.content.setText(advice[position].getContent());
+        holder.author.setText(advice[position].getAuthor());
+        holder.category.setText(advice[position].getCategory());
     }
 
     @Override
     public int getItemCount() {
-        return contentItems.length;
+        return advice.length;
     }
 }

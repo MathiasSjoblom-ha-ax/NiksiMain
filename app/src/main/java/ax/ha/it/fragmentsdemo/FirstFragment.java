@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,16 +17,14 @@ import ax.ha.it.fragmentsdemo.databinding.FragmentFirstBinding;
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
-    String[] content;
-    String[] author;
-    String[] category;
+    private myViewModel viewmodel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
 
-        if(getActivity().getResources().getConfiguration().orientation ==
+        if (getActivity().getResources().getConfiguration().orientation ==
                 Configuration.ORIENTATION_PORTRAIT) {
             binding.addButtonMain.setOnClickListener(
                     view -> Navigation.findNavController(view).navigate(
@@ -33,10 +32,11 @@ public class FirstFragment extends Fragment {
         }
 
         RecyclerView recyclerView = binding.contentRecyclerView;
-
-        CustomAdapter recyclerAdapter = new CustomAdapter(content, author, category);
+        viewmodel = new ViewModelProvider(getActivity()).get(myViewModel.class);
+        //Will not work later, use observe instead of get value
+        CustomAdapter recyclerAdapter = new CustomAdapter(viewmodel.getAdvice().getValue().toArray(new Advice[0]));
         recyclerView.setAdapter(recyclerAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         return binding.getRoot();
     }
@@ -44,6 +44,6 @@ public class FirstFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        binding = null;
     }
-
 }

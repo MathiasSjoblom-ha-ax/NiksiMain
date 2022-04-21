@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@+id/firstFragment">
+    app:startDestination="@+id/FirstFragment">
 
     <fragment
-        android:id="@+id/firstFragment"
+        android:id="@+id/FirstFragment"
         android:name="ax.ha.it.fragmentsdemo.FirstFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first">
@@ -21,8 +21,8 @@
         tools:layout="@layout/fragment_second">
         <action
             android:id="@+id/action_secondFragment_to_firstFragment"
-            app:destination="@id/firstFragment"
-            app:popUpTo="@id/firstFragment"
+            app:destination="@id/FirstFragment"
+            app:popUpTo="@id/FirstFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>
