@@ -10,4 +10,12 @@
         <item>Technology</item>
         <item>Miscellaneous</item>
     </string-array>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="Preferences_header">Preferences</string>
+    <string name="sync_header">Sync</string>
+
+    <string name="author_setting">Default author</string>
+    <string name="spinner_title">Default category</string>
+    <string name="new_category">Enter new category</string>
 </resources>

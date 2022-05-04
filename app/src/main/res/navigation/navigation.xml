@@ -24,5 +24,12 @@
             app:destination="@id/FirstFragment"
             app:popUpTo="@id/FirstFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_secondFragment_to_settingsActivity"
+            app:destination="@id/settingsActivity" />
     </fragment>
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="ax.ha.it.fragmentsdemo.SettingsActivity"
+        android:label="SettingsActivity" />
 </navigation>
