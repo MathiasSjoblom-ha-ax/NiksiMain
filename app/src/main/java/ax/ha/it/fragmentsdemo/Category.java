@@ -10,22 +10,15 @@ public class Category {
 
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "categoryKey")
+    @ColumnInfo(name = "category")
     public String categoryWord;
-    public Category(@NonNull int key) {
-        if(key == 0) {
-            this.categoryWord = "Lifestyle";
-        }
-        if(key == 1) {
-            this.categoryWord = "Technology";
-        }
-        if(key == 2) {
-            this.categoryWord = "Miscellaneous";
-        }
+
+    public Category(@NonNull String categoryWord) {
+        this.categoryWord = categoryWord;
     }
 
     @NonNull
-    public String getCategoryWord() {
+    public String getCategory() {
         return categoryWord;
     }
 }

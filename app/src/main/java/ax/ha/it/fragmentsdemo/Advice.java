@@ -6,8 +6,10 @@ import androidx.room.PrimaryKey;
 
 import androidx.room.Entity;
 
+import java.io.Serializable;
+
 @Entity(tableName = "advice_table")
-public class Advice {
+public class Advice implements Serializable {
 
     String content;
     String author;
@@ -39,10 +41,6 @@ public class Advice {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public void setCategoryWithKey(int key) {
-        this.category = new Category(key).getCategoryWord();
     }
 
     public void setCategory(String category) {

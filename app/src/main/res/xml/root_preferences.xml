@@ -8,10 +8,10 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
+            app:key="Reply"
             app:defaultValue="0"
             app:entries="@array/spinnerItems"
             app:entryValues="@array/spinnerItems"
-            app:key="reply"
             app:title="@string/spinner_title"
             app:useSimpleSummaryProvider="true" />
 
