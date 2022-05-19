@@ -19,6 +19,9 @@ public interface AdviceDAO {
     @Delete
     void delete(Advice... advice);
 
+    @Query("DELETE FROM advice_table")
+    void deleteAll();
+
     @Update
     void update(Advice... advice);
 

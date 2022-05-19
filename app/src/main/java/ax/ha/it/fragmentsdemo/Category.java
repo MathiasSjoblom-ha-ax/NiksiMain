@@ -21,4 +21,11 @@ public class Category {
     public String getCategory() {
         return categoryWord;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryWord='" + categoryWord + '\'' +
+                '}';
+    }
 }

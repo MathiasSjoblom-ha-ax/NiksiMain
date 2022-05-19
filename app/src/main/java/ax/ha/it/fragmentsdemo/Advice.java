@@ -27,6 +27,8 @@ public class Advice implements Serializable {
 
     public int getPrimaryKey() { return PrimaryKey; }
 
+    public void setPrimaryKey(int primaryKey) { PrimaryKey = primaryKey; }
+
     public String getAuthor() {
         return author;
     }
@@ -49,5 +51,15 @@ public class Advice implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "Advice{" +
+                "content='" + content + '\'' +
+                ", author='" + author + '\'' +
+                ", category='" + category + '\'' +
+                ", PrimaryKey=" + PrimaryKey +
+                '}';
     }
 }

@@ -8,47 +8,50 @@
 
     <RelativeLayout
         android:id="@+id/activity_main"
-        android:layout_width="412dp"
-        android:layout_height="223dp"
+        android:layout_width="411dp"
+        android:layout_height="191dp"
         android:paddingLeft="16dp"
         android:paddingTop="16dp"
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053"
         tools:context=".MainActivity">
 
         <TextView
             android:id="@+id/contentItem"
-            android:layout_width="396dp"
-            android:layout_height="135dp"
+            android:layout_width="392dp"
+            android:layout_height="108dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginEnd="4dp"
             android:text="CONTENT" />
 
         <TextView
             android:id="@+id/authorItem"
-            android:layout_width="233dp"
+            android:layout_width="192dp"
             android:layout_height="46dp"
             android:layout_below="@+id/contentItem"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
             android:text="AUTHOR" />
 
         <TextView
             android:id="@+id/categoryItem"
-            android:layout_width="158dp"
-            android:layout_height="43dp"
+            android:layout_width="196dp"
+            android:layout_height="45dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="145dp"
-            android:layout_marginEnd="238dp"
+            android:layout_marginTop="112dp"
+            android:layout_marginEnd="200dp"
             android:text="CATEGORY" />
     </RelativeLayout>
 
