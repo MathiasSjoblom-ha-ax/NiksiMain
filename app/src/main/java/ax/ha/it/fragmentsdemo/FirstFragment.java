@@ -1,6 +1,7 @@
 package ax.ha.it.fragmentsdemo;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.ExistingPeriodicWorkPolicy;
@@ -43,15 +45,22 @@ public class FirstFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        WorkManager workManager = WorkManager.getInstance(this.getContext());
-        PeriodicWorkRequest periodicWorkRequest =
-                new PeriodicWorkRequest.Builder(AdviceUpdateWorker.class, 15, TimeUnit.MINUTES)
-                                .build();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        PreferenceManager.setDefaultValues(getContext(), R.xml.root_preferences, false);
+        Boolean AutoUpdate = sharedPreferences.getBoolean("UpdateSwitch", false);
 
-        workManager.enqueueUniquePeriodicWork(
-                "AdviceUpdate",
-                ExistingPeriodicWorkPolicy.REPLACE,
-                periodicWorkRequest);
+        if(AutoUpdate) {
+            Toast.makeText(this.getContext(), "Auto update is on", Toast.LENGTH_SHORT).show();
+            WorkManager workManager = WorkManager.getInstance(this.getContext());
+            PeriodicWorkRequest periodicWorkRequest =
+                    new PeriodicWorkRequest.Builder(AdviceUpdateWorker.class, 15, TimeUnit.MINUTES)
+                            .build();
+
+            workManager.enqueueUniquePeriodicWork(
+                    "AdviceUpdate",
+                    ExistingPeriodicWorkPolicy.REPLACE,
+                    periodicWorkRequest);
+        }
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         RecyclerView recyclerView = binding.contentRecyclerView;
@@ -76,6 +85,7 @@ public class FirstFragment extends Fragment {
                         List<Category> AllCategories = response.body();
                         new Thread( () -> {
                             for(int i = 0; i < AllCategories.size(); i++) {
+                                System.out.println("Inserting: " + AllCategories.get(i).getCategory());
                                 Catdb.insert(new Category(AllCategories.get(i).getCategory()));
                             }
                         }).start();
@@ -84,7 +94,7 @@ public class FirstFragment extends Fragment {
                             String error = response.errorBody().string();
                             Toast.makeText(getContext(), "Error fetching categories from API * " + error, Toast.LENGTH_SHORT).show();
                         } catch (IOException e) {
-                            Log.e("SecondFragment", "Bad response: "+e);
+                            Log.e("FirstFragment", "Bad response: "+e);
                         }
                     }
                 }

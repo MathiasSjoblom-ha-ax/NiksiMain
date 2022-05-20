@@ -18,4 +18,6 @@
     <string name="author_setting">Default author</string>
     <string name="spinner_title">Default category</string>
     <string name="new_category">Enter new category</string>
+    <string name="updateSwitch">Periodically update advices</string>
+
 </resources>

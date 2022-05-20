@@ -15,6 +15,10 @@
             app:title="@string/spinner_title"
             app:useSimpleSummaryProvider="true" />
 
+        <SwitchPreferenceCompat
+            app:key="UpdateSwitch"
+            app:title="@string/updateSwitch" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
