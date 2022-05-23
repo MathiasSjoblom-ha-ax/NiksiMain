@@ -16,7 +16,7 @@ public interface AdviceService {
     @POST("addadvice")
     @FormUrlEncoded
     Call<String> addAdvice(
-            @Field("advice") String content,
+            @Field("advice") String advice,
             @Field("author") String author,
             @Field("category") String category);
 

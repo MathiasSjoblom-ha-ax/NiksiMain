@@ -1,8 +1,5 @@
 package ax.ha.it.fragmentsdemo;
 
-import static androidx.fragment.app.FragmentManager.TAG;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -10,24 +7,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.preference.PreferenceManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
-import android.widget.SpinnerAdapter;
-import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,8 +26,6 @@ import ax.ha.it.fragmentsdemo.databinding.FragmentSecondBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SecondFragment extends Fragment {
 
@@ -98,7 +86,7 @@ public class SecondFragment extends Fragment {
                         dao.insert(advice);
 
                         AdviceService adviceService = RetrofitClient.getRetrofit().create(AdviceService.class);
-                        Call<String> call = adviceService.addAdvice(advice.content, advice.author, advice.category);
+                        Call<String> call = adviceService.addAdvice(advice.advice, advice.author, advice.category);
                         call.enqueue(new Callback<String>() {
                             @Override
                             public void onResponse(Call<String> call, Response<String> response) {

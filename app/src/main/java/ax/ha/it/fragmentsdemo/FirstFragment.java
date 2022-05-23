@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,12 +20,10 @@ import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.ExistingPeriodicWorkPolicy;
-import androidx.work.ExistingWorkPolicy;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -82,10 +79,11 @@ public class FirstFragment extends Fragment {
                 @Override
                 public void onResponse(@NonNull Call<List<Category>> call, @NonNull Response<List<Category>> response) {
                     if (response.isSuccessful()) {
+                        System.out.println("CategoryTest " + response.body());
                         List<Category> AllCategories = response.body();
                         new Thread( () -> {
                             for(int i = 0; i < AllCategories.size(); i++) {
-                                System.out.println("Inserting: " + AllCategories.get(i).getCategory());
+                                //System.out.println("Inserting: " + AllCategories.get(i).getCategory());
                                 Catdb.insert(new Category(AllCategories.get(i).getCategory()));
                             }
                         }).start();
@@ -120,7 +118,8 @@ public class FirstFragment extends Fragment {
                         CustomAdapter recyclerAdapter = new CustomAdapter(viewmodel.getAdvice().getValue().toArray(new Advice[0]));
                         Advice[] tempAdvices = new Advice[AllAdvises.size()];
                         for(int i = 0; i < AllAdvises.size(); i++) {
-                            tempAdvices[i] = AllAdvises.get(i);
+                            Advice temp = new Advice(AllAdvises.get(i).advice,AllAdvises.get(i).author,AllAdvises.get(i).category);
+                            tempAdvices[i] = temp;
                         }
                         recyclerAdapter = new CustomAdapter(tempAdvices);
                         recyclerView.setAdapter(recyclerAdapter);

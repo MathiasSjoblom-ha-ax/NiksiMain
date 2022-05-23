@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity(tableName = "advice_table")
 public class Advice implements Serializable {
 
-    String content;
+    String advice;
     String author;
     String category;
 
@@ -19,8 +19,8 @@ public class Advice implements Serializable {
     @ColumnInfo(name = "myKey")
     public int PrimaryKey;
 
-    public Advice (@NonNull String content, String author, String category) {
-        this.content = content;
+    public Advice (@NonNull String advice, String author, String category) {
+        this.advice = advice;
         this.author = author;
         this.category = category;
     }
@@ -38,7 +38,7 @@ public class Advice implements Serializable {
     }
 
     public String getContent() {
-        return content;
+        return advice;
     }
 
     public void setAuthor(String author) {
@@ -50,13 +50,13 @@ public class Advice implements Serializable {
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.advice = content;
     }
 
     @Override
     public String toString() {
         return "Advice{" +
-                "content='" + content + '\'' +
+                "advice='" + advice + '\'' +
                 ", author='" + author + '\'' +
                 ", category='" + category + '\'' +
                 ", PrimaryKey=" + PrimaryKey +
