@@ -15,6 +15,6 @@ public interface CategoryService {
 
     @POST("addcategory")
     @FormUrlEncoded
-    Call<Category> addCategory(@Field("Category") String category);
+    Call<Category> addCategory(@Field("name") String category);
 
 }
